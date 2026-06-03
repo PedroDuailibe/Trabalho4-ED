@@ -99,6 +99,10 @@ bool Trie::contains(std::string title){
 
 std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
 
+    // Normaliza o prefixo
+    std::string name = toSearchKey(prefix);
+
+
     return std::vector<Game*> ();
 }
 
@@ -115,7 +119,66 @@ std::string Trie::toSearchKey(std::string text) {
     return key;
 }
 
+int alphabetically(std::string name1, std::string name2) {
+    int size1 = name1.size();
+    int size2 = name2.size();
+    int size = size1;
+
+    if (size1 > size2) {
+        size = size2;
+    }
+
+    for(int i = 0; i < size; i++) {
+        if(name1[i] > name2[i]) {
+            return 2;
+        }
+        if(name2[i] > name1[i]) {
+            return 1;
+        }
+    }
+
+    if(size1 > size2) {
+        return 2;
+    }
+
+    return 1;
+}
+
+int Trie::aux(Game* game1, Game* game2){
+    int pop1 = game1->getPopularity();
+    int pop2 = game2->getPopularity();
+
+    if(pop1 > pop2) {
+        return 1;
+    }
+
+    if(pop2 > pop1) {
+        return 2;
+    }
+
+    std::string name1 = toSearchKey(game1->getTitle());
+    std::string name2 = toSearchKey(game2->getTitle());
+
+    return alphabetically(name1, name2);
+}
+
 void Trie::sortResults(std::vector<Game*>& games) {
-    
+
+    // Tamanho do vetor
+    int size = games.size();
+
+    // Loop pelo vetor
+    for(int i = 1; i < size; i++) {
+        Game* curr = games[i];
+        int j = i - 1;
+
+        // Leva o jogo até sua posição
+        while(j >= 0 && aux(curr, games[j]) == 1) {
+            games[j + 1] = games[j];
+            j--;
+        }
+
+        games[j + 1] = curr;
+    }
 }
 

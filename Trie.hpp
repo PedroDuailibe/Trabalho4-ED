@@ -23,6 +23,7 @@ class Trie {
 private:
 
     TrieNode* root;
+    int aux(Game* game1, Game* game2);
 
 public:
 
