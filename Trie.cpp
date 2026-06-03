@@ -40,7 +40,16 @@ std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
 }
 
 std::string Trie::toSearchKey(std::string text) {
-    return "";
+    std::string key = "";
+    for(char c : text) {
+        if (c == ' '){
+            continue;
+        }
+
+        char aux = std::tolower(c);
+        key += aux;
+    }
+    return key;
 }
 
 void Trie::sortResults(std::vector<Game*>& games) {
