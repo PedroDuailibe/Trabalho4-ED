@@ -4,7 +4,7 @@
 #include <vector>
 #include "Game.hpp"
 
-const int ALPHABET_SIZE = 36; 
+const int ALPHABET_SIZE = 37; 
 
 class TrieNode {
 

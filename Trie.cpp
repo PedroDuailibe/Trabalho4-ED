@@ -27,7 +27,40 @@ Trie::~Trie() {
 }
 
 bool Trie::insert(Game* game) {
-    return false;
+
+    if(game == nullptr) {
+        return false;
+    }
+
+    TrieNode* curr = root;
+
+    // Normaliza o nome do jogo
+    std::string name = toSearchKey(game->getTitle());
+
+    // Caminha pela Trie
+    for(char c : name) {
+
+        int n = -1;
+
+        if(c >= 'a' && c <= 'z') {
+            n = c - 97;
+        } else {
+            n = c - 22;
+        }
+
+        if(curr->children[n] == nullptr) {
+            curr->children[n] = new TrieNode();
+        }
+
+        curr = curr->children[n];
+    }
+
+    // children[36] carrega o jogo
+    curr->children[36] = new TrieNode();
+    curr->children[36]->isEndOfTitle = true;
+    curr->game = game;
+
+    return true;
 }
 
 bool Trie::contains(std::string title){
