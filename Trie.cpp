@@ -64,7 +64,37 @@ bool Trie::insert(Game* game) {
 }
 
 bool Trie::contains(std::string title){
-    return false;
+
+    // Normaliza o nome do jogo
+    std::string name = toSearchKey(title);
+
+    // Node auxiliar
+    TrieNode* curr = root;
+
+    // Procura o jogo pela Trie
+    for(char c : name) {
+
+        // Index referente ao caractere c
+        int n = -1;
+
+        if(c >= 'a' && c <= 'z') {
+            n = c - 97;
+        } else {
+            n = c - 22;
+        }
+    
+        if(curr->children[n] == nullptr) {
+            return false;
+        }
+
+        curr = curr->children[n];
+    }
+
+    if(curr->children[36] == nullptr) {
+        return false;
+    }
+
+    return true;
 }
 
 std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
