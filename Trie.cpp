@@ -1,4 +1,5 @@
 #include "Trie.hpp"
+#include <string>
 
 TrieNode::TrieNode() {
     isEndOfTitle = false;
@@ -33,4 +34,16 @@ bool Trie::contains(std::string title){
     return false;
 }
 
+std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
+
+    return std::vector<Game*> ();
+}
+
+std::string Trie::toSearchKey(std::string text) {
+    return "";
+}
+
+void Trie::sortResults(std::vector<Game*>& games) {
+    
+}
 
