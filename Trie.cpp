@@ -1,5 +1,6 @@
 #include "Trie.hpp"
 #include <string>
+#include <iostream>
 
 TrieNode::TrieNode() {
     isEndOfTitle = false;
@@ -56,8 +57,7 @@ bool Trie::insert(Game* game) {
     }
 
     // children[36] carrega o jogo
-    curr->children[36] = new TrieNode();
-    curr->children[36]->isEndOfTitle = true;
+    curr->isEndOfTitle = true;
     curr->game = game;
 
     return true;
@@ -90,20 +90,69 @@ bool Trie::contains(std::string title){
         curr = curr->children[n];
     }
 
-    if(curr->children[36] == nullptr) {
-        return false;
+    return curr->isEndOfTitle;
+}
+
+void recursive_find(std::vector<Game*>& games, TrieNode* curr) {
+    if(curr == nullptr) {
+        return;
     }
 
-    return true;
+    if(curr->isEndOfTitle) {
+        games.push_back(curr->game);
+    }
+
+    for(int i = 0; i < 36; i++) {
+        recursive_find(games, curr->children[i]);
+    }
 }
 
 std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
+    std::vector<Game*> games;
+
+    if(k <= 0) {
+        return games;
+    }
 
     // Normaliza o prefixo
     std::string name = toSearchKey(prefix);
 
+    // Node auxiliar
+    TrieNode* curr = root;
 
-    return std::vector<Game*> ();
+    // Percorre a Trie pelo prefixo
+    for(char c : name) {
+
+        // Index referente ao caractere c
+        int n = -1;
+
+        if(c >= 'a' && c <= 'z') {
+            n = c - 97;
+        } else {
+            n = c - 22;
+        }
+    
+        // Nenhum jogo com tal prefixo, retorna vazio
+        if(curr->children[n] == nullptr) {
+            return games;
+        }
+
+        curr = curr->children[n];
+    }
+
+    recursive_find(games, curr);
+    sortResults(games);
+
+    if(k > games.size()) {
+        return games;
+    }
+
+    std::vector<Game*> result;
+    for(int i = 0; i < k; i++) {
+        result.push_back(games[i]);
+    }
+
+    return result;
 }
 
 std::string Trie::toSearchKey(std::string text) {
