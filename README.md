@@ -49,3 +49,24 @@ Minecraft Legends | Discover the mysteries of Minecraft Legends a new action str
 Mineirinho Director s Cut | A really cool 3d platform game lots of extreme adventures with our friend Miner now we have the option Double Miner and the adventure gets a lot cooler Director s Cut version has unpublished scenes that have never been seen | 912
 ```
 
+### Exemplo 2
+```bash
+./app 3 "half l"
+```
+
+Saída esperada:
+```bash
+Half Life 2 | 1998 HALF LIFE sends a shock through the game industry with its combination of pounding action and continuous immersive storytelling Valve s debut title wins more than 50 game of the year awards on its way to being named Best PC Game Ever by PC Gamer and launches a franchise with more than eight million retail units sold worldwide | 131995
+Half Life Alyx | Half Life Alyx is Valve s VR return to the Half Life series It s the story of an impossible fight against a vicious alien race known as the Combine set between the events of Half Life and Half Life 2 Playing as Alyx Vance you are humanity s only chance for survival | 71194
+Half Life 2 Episode Two | Half Life 2 Episode Two is the second in a trilogy of new games created by Valve that extends the award winning and best selling Half Life adventure As Dr Gordon Freeman you were last seen exiting City 17 with Alyx Vance as the Citadel erupted amidst a storm of unknown proportions | 28291
+```
+
+### Exemplo 3
+```bash
+./app 100383 "God of 2"
+```
+Saída esperada:
+```bash
+No results found
+```
+
