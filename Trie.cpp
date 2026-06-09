@@ -1,6 +1,5 @@
 #include "Trie.hpp"
 #include <string>
-#include <iostream>
 
 TrieNode::TrieNode() {
     isEndOfTitle = false;
@@ -40,14 +39,15 @@ bool Trie::insert(Game* game) {
 
     // Caminha pela Trie
     for(char c : name) {
-
         int n = -1;
 
         if(c >= 'a' && c <= 'z') {
-            n = c - 97;
-        } else {
-            n = c - 22;
+            n = c - 'a';
+        } else if (c >= '0' && c <= '9') {
+            n = c - '0' + 26;
         }
+
+        if (n == -1) continue;
 
         if(curr->children[n] == nullptr) {
             curr->children[n] = new TrieNode();
@@ -56,7 +56,6 @@ bool Trie::insert(Game* game) {
         curr = curr->children[n];
     }
 
-    // children[36] carrega o jogo
     curr->isEndOfTitle = true;
     curr->game = game;
 
@@ -67,10 +66,8 @@ bool Trie::contains(std::string title){
 
     // Normaliza o nome do jogo
     std::string name = toSearchKey(title);
-
-    // Node auxiliar
+    
     TrieNode* curr = root;
-
     // Procura o jogo pela Trie
     for(char c : name) {
 
@@ -78,11 +75,13 @@ bool Trie::contains(std::string title){
         int n = -1;
 
         if(c >= 'a' && c <= 'z') {
-            n = c - 97;
-        } else {
-            n = c - 22;
+            n = c - 'a';
+        } else if (c >= '0' && c <= '9') {
+            n = c - '0' + 26;
         }
-    
+   
+        if (n == -1) continue;
+
         if(curr->children[n] == nullptr) {
             return false;
         }
@@ -102,7 +101,7 @@ void recursive_find(std::vector<Game*>& games, TrieNode* curr) {
         games.push_back(curr->game);
     }
 
-    for(int i = 0; i < 36; i++) {
+    for(int i = 0; i < ALPHABET_SIZE; i++) {
         recursive_find(games, curr->children[i]);
     }
 }
@@ -127,11 +126,13 @@ std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
         int n = -1;
 
         if(c >= 'a' && c <= 'z') {
-            n = c - 97;
-        } else {
-            n = c - 22;
+            n = c - 'a';
+        } else if (c >= '0' && c <= '9') {
+            n = c - '0' + 26;
         }
     
+        if (n == -1) continue;
+
         // Nenhum jogo com tal prefixo, retorna vazio
         if(curr->children[n] == nullptr) {
             return games;
