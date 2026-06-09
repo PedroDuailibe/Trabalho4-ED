@@ -8,12 +8,10 @@ A estrutura Trie armazena os títulos dos jogos caractere por caractere, permiti
 
 ### Principais Características:
 * **Busca Case-Insensitive:** O sistema não diferencia letras maiúsculas de minúsculas.
-* **Ignora Espaços em Branco:** Espaços são desconsiderados na criação da chave de busca interna (ex: `"Half Life"` e `"halflife"` são equivalentes).
+* **Ignora Espaços em Branco:** Espaços são desconsiderados na criação da chave de busca interna (ex: `"Half Life 2"` e `"halflife2"` são equivalentes).
 * **Ordenação Personalizada:** Os resultados do autocomplete são retornados com até *k* sugestões, ordenados por:
   1. Maior popularidade;
   2. Ordem alfabética da chave de busca interna (em caso de empate na popularidade).
-* **Ordenação Manual:** Implementada sem o uso de `std::sort` (utilizando o algoritmo *Insertion Sort*).
-* **Otimização de Memória:** A Trie armazena ponteiros para os objetos de jogos já existentes na base de dados, evitando duplicações desnecessárias.
 
 ---
 
