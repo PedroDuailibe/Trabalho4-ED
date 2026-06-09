@@ -1,5 +1,4 @@
 #include "Game.hpp"
-
 Game::Game() : title(""), shortDescription(""), popularity(0) {}
 
 Game::Game(std::string title, std::string shortDescription, int popularity)

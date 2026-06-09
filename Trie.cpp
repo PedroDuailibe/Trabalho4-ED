@@ -92,7 +92,7 @@ bool Trie::contains(std::string title){
     return curr->isEndOfTitle;
 }
 
-void recursive_find(std::vector<Game*>& games, TrieNode* curr) {
+void Trie::recursive_find(std::vector<Game*>& games, TrieNode* curr) {
     if(curr == nullptr) {
         return;
     }
@@ -169,31 +169,6 @@ std::string Trie::toSearchKey(std::string text) {
     return key;
 }
 
-int alphabetically(std::string name1, std::string name2) {
-    int size1 = name1.size();
-    int size2 = name2.size();
-    int size = size1;
-
-    if (size1 > size2) {
-        size = size2;
-    }
-
-    for(int i = 0; i < size; i++) {
-        if(name1[i] > name2[i]) {
-            return 2;
-        }
-        if(name2[i] > name1[i]) {
-            return 1;
-        }
-    }
-
-    if(size1 > size2) {
-        return 2;
-    }
-
-    return 1;
-}
-
 int Trie::aux(Game* game1, Game* game2){
     int pop1 = game1->getPopularity();
     int pop2 = game2->getPopularity();
@@ -204,7 +179,8 @@ int Trie::aux(Game* game1, Game* game2){
     std::string name1 = toSearchKey(game1->getTitle());
     std::string name2 = toSearchKey(game2->getTitle());
 
-    return alphabetically(name1, name2);
+    if (name1 < name2) return 1;
+    return 2;
 }
 
 void Trie::sortResults(std::vector<Game*>& games) {

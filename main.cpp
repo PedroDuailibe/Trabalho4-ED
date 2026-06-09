@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc < 3) {
-        std::cout << "Formato: ./app k prefix" << std::endl;
+        std::cout << "Usage: ./app k prefix" << std::endl;
         return 1;
     }
 

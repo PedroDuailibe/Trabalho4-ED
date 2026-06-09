@@ -4,7 +4,7 @@
 #include <vector>
 #include "Game.hpp"
 
-const int ALPHABET_SIZE = 35; 
+const int ALPHABET_SIZE = 36; 
 
 class TrieNode {
 
@@ -25,6 +25,9 @@ private:
     TrieNode* root;
     int aux(Game* game1, Game* game2);
 
+    // Outros métodos auxiliares, se necessário
+    void recursive_find(std::vector<Game*>& games, TrieNode* curr);
+
 public:
 
     Trie();
@@ -38,9 +41,6 @@ public:
     std::string toSearchKey(std::string text);
     void sortResults(std::vector<Game*>& games);
 
-    // Outros métodos auxiliares, se necessário
-    void recursive_find(std::vector<Game*>& games, TrieNode* curr);
-    int alphabetically(std::string name1, std::string name2);  
 };
 
 #endif
