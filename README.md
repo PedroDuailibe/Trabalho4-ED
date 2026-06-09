@@ -36,4 +36,16 @@ A estrutura do projeto está organizada de forma modularizada nos seguintes arqu
 
 * `GamesDatabase.hpp` / `GamesDatabase.cpp`: Base de dados estática fornecida para o projeto, contendo o array global de jogos (games) e a contagem total (numberOfGames).
 
+## Exemplos de Uso
+
+### Exemplo 1
+```bash
+./app 3 mine
+```
+Saída esperada:
+```bash
+Minecraft Dungeons | Fight your way through an exciting action adventure game inspired by classic dungeon crawlers and set in the Minecraft universe | 7832
+Minecraft Legends | Discover the mysteries of Minecraft Legends a new action strategy game Explore a gentle land of rich resources and lush biomes on the brink of destruction The ravaging piglins have arrived and it s up to you to inspire your allies and lead them in strategic battles to save the Overworld | 1965
+Mineirinho Director s Cut | A really cool 3d platform game lots of extreme adventures with our friend Miner now we have the option Double Miner and the adventure gets a lot cooler Director s Cut version has unpublished scenes that have never been seen | 912
+```
 
