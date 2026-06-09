@@ -24,3 +24,12 @@ Para compilar o projeto completo, execute o seguinte comando no diretório raiz:
 ```bash
 g++ main.cpp Game.cpp Trie.cpp GamesDatabase.cpp -o app
 ```
+## Instruções de Execução
+
+Após a compilação, o programa deve ser executado via linha de comando informando obrigatoriamente a quantidade máxima de sugestões (*k*) e o prefixo de busca:
+
+```bash
+./app <k> <prefixo>
+```
+
+
