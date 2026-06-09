@@ -29,7 +29,18 @@ g++ main.cpp Game.cpp Trie.cpp GamesDatabase.cpp -o app
 Após a compilação, o programa deve ser executado via linha de comando informando obrigatoriamente a quantidade máxima de sugestões (*k*) e o prefixo de busca:
 
 ```bash
-./app <k> <prefixo>
+./app k prefixo
 ```
+## Organização dos Arquivos
+
+A estrutura do projeto está organizada de forma modularizada nos seguintes arquivos:
+
+* `main.cpp`: Ponto de entrada do programa. Responsável por validar os argumentos da linha de comando, inicializar a Trie, carregar a base de jogos fixa, chamar o autocomplete e formatar a saída para o usuário.
+
+* `Game.hpp` / `Game.cpp`: Declaração e implementação da classe Game, que encapsula os dados de cada jogo (título, descrição curta e popularidade).
+
+* `Trie.hpp` / `Trie.cpp`: Declaração e implementação das classes TrieNode e Trie. Contém toda a lógica de manipulação da árvore de prefixos (métodos `insert`, `contains`, `autocomplete`, `toSearchKey` e o método de ordenação `sortResults`).
+
+* `GamesDatabase.hpp` / `GamesDatabase.cpp`: Base de dados estática fornecida para o projeto, contendo o array global de jogos (games) e a contagem total (numberOfGames).
 
 
