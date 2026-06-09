@@ -20,3 +20,7 @@ A estrutura Trie armazena os títulos dos jogos caractere por caractere, permiti
 O projeto foi modularizado em classes e pode ser compilado diretamente pelo terminal utilizando o `g++` (ou qualquer compilador compatível com C++11 ou superior).
 
 Para compilar o projeto completo, execute o seguinte comando no diretório raiz:
+
+```bash
+g++ main.cpp Game.cpp Trie.cpp GamesDatabase.cpp -o app
+```
