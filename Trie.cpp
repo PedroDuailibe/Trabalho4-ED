@@ -158,13 +158,13 @@ std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
 
 std::string Trie::toSearchKey(std::string text) {
     std::string key = "";
-    for(char c : text) {
-        if (c == ' '){
-            continue;
-        }
 
-        char aux = std::tolower(c);
-        key += aux;
+    for(char c : text) {
+        if(c >= 'A' && c <= 'Z') {
+            key+= (c - 'A' + 'a');
+        } else if((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+            key += c;
+        }
     }
     return key;
 }
@@ -198,13 +198,8 @@ int Trie::aux(Game* game1, Game* game2){
     int pop1 = game1->getPopularity();
     int pop2 = game2->getPopularity();
 
-    if(pop1 > pop2) {
-        return 1;
-    }
-
-    if(pop2 > pop1) {
-        return 2;
-    }
+    if(pop1 > pop2) return 1;
+    if(pop2 > pop1) return 2;
 
     std::string name1 = toSearchKey(game1->getTitle());
     std::string name2 = toSearchKey(game2->getTitle());

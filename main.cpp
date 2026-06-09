@@ -1,28 +1,35 @@
 #include "Trie.hpp"
+#include "GamesDatabase.hpp" 
 #include <iostream>
 #include <vector>
+#include <string>
 
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc < 3) {
+        std::cout << "Formato: ./app k prefix" << std::endl;
+        return 1;
+    }
 
-  Trie jogos = Trie();
-  Game* mine = new Game("mine", "jogo sandbox", 100);
-  Game* minecraft = new Game("minecraft", "Jogo de fps", 70);
-  Game* mineceraft = new Game("mineceraft", "Sandbox na cidade", 100);
-  Game* gta5 = new Game("GTA5", "Sandbox foda", 100);
-  jogos.insert(mine);
-  jogos.insert(mineceraft);
-  jogos.insert(minecraft);
-  jogos.insert(gta5);
+    int k = std::stoi(argv[1]);
+    std::string prefix = argv[2];
 
-  std::vector<Game*> games = jogos.autocomplete("mine", 3);
-  for(Game* game : games) {
-    std::cout << game->getTitle() << std::endl;
-  }
-  std::cout << jogos.contains("minecraft") << std::endl;
-  std::cout << jogos.contains("minea");
-  delete mine;
-  delete minecraft;
-  delete mineceraft;
-  delete gta5;
-  return 0;
+    Trie jogos;
+
+    for (int i = 0; i < numberOfGames; i++) {
+        jogos.insert(&games[i]); 
+    }
+
+    std::vector<Game*> resultados = jogos.autocomplete(prefix, k);
+
+    if (resultados.empty()) {
+        std::cout << "No results found" << std::endl;
+    } else {
+        for (Game* game : resultados) {
+            std::cout << game->getTitle() << " | " 
+                      << game->getShortDescription() << " | " 
+                      << game->getPopularity() << std::endl;
+        }
+    }
+
+    return 0;
 }
