@@ -6,8 +6,6 @@ Este projeto consiste em um sistema de **autocomplete de jogos** desenvolvido em
 
 A estrutura Trie armazena os títulos dos jogos caractere por caractere, permitindo buscas de prefixo em tempo linear em relação ao tamanho do prefixo pesquisado, independentemente do número de jogos cadastrados. 
 
----
-
 ## Instruções de Compilação
 
 O projeto foi modularizado em classes e pode ser compilado diretamente pelo terminal utilizando o `g++` (ou qualquer compilador compatível com C++11 ou superior).
@@ -34,7 +32,7 @@ A estrutura do projeto está organizada de forma modularizada nos seguintes arqu
 
 * `Trie.hpp` / `Trie.cpp`: Declaração e implementação das classes TrieNode e Trie. Contém toda a lógica de manipulação da árvore de prefixos (métodos `insert`, `contains`, `autocomplete`, `toSearchKey` e o método de ordenação `sortResults`).
 
-* `GamesDatabase.hpp` / `GamesDatabase.cpp`: Base de dados estática fornecida para o projeto, contendo o array global de jogos (games) e a contagem total (numberOfGames).
+* `GamesDatabase.hpp` / `GamesDatabase.cpp`: Base de dados estática fornecida para o projeto, contendo o array global de jogos (`games`) e a contagem total (`numberOfGames`).
 
 ## Exemplos de Uso
 
